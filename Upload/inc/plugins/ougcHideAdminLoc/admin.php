@@ -26,13 +26,16 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  ****************************************************************************/
 
-namespace OUGCHideAdminLoc\Admin;
+namespace ougc\HideAdminLocation\Admin;
+
+use function OUGCCoinbasePoints\Core\loadPluginLibrary;
+use function ougc\HideAdminLocation\Core\loadLanguage;
 
 function pluginInfo(): array
 {
     global $lang;
 
-    \OUGCHideAdminLoc\Core\loadLanguage();
+    loadLanguage();
 
     return [
         'name' => 'OUGC Hide Administrator Location',
@@ -55,7 +58,7 @@ function pluginActivate(): bool
 {
     global $PL, $lang, $cache;
 
-    \OUGCHideAdminLoc\Core\loadPluginLibrary();
+    \ougc\HideAdminLocation\Core\loadPluginLibrary();
 
     // Add settings group
     $PL->settings('ougc_hal', $lang->setting_group_ougc_hal, $lang->setting_group_ougc_hal_desc, [
@@ -108,7 +111,7 @@ function pluginUninstall(): bool
 {
     global $db, $PL, $cache;
 
-    \OUGCCoinbasePoints\Core\loadPluginLibrary();
+    loadPluginLibrary();
 
     $PL->settings_delete('ougc_hal');
 

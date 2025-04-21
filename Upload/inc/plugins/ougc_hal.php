@@ -27,6 +27,12 @@
  ****************************************************************************/
 
 // Die if IN_MYBB is not defined, for security reasons.
+use function ougc\HideAdminLocation\Admin\pluginActivate;
+use function ougc\HideAdminLocation\Admin\pluginInfo;
+use function ougc\HideAdminLocation\Admin\pluginIsInstalled;
+use function ougc\HideAdminLocation\Admin\pluginUninstall;
+use function ougc\HideAdminLocation\Core\addHooks;
+
 defined('IN_MYBB') or die('Direct initialization of this file is not allowed.');
 
 // The following users and groups will be able to bypass this plugin and see the location of any user
@@ -46,29 +52,29 @@ if (defined('IN_ADMINCP')) {
 } else {
     require_once OUGC_HAL . '/forumHooks.php';
 
-    \OUGCHideAdminLoc\Core\addHooks('OUGCHideAdminLoc\ForumHooks');
+    addHooks('ougc\HideAdminLocation\ForumHooks');
 }
 
 // Plugin API
 function ougc_hal_info(): array
 {
-    return \OUGCHideAdminLoc\Admin\pluginInfo();
+    return pluginInfo();
 }
 
 // _activate() routine
 function ougc_hal_activate(): bool
 {
-    return \OUGCHideAdminLoc\Admin\pluginActivate();
+    return pluginActivate();
 }
 
 // _is_installed() routine
 function ougc_hal_is_installed(): bool
 {
-    return \OUGCHideAdminLoc\Admin\pluginIsInstalled();
+    return pluginIsInstalled();
 }
 
 // _uninstall() routine
 function ougc_hal_uninstall(): bool
 {
-    return \OUGCHideAdminLoc\Admin\pluginUninstall();
+    return pluginUninstall();
 }

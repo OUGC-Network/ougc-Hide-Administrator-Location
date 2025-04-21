@@ -26,7 +26,9 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  ****************************************************************************/
 
-namespace OUGCHideAdminLoc\ForumHooks;
+namespace ougc\HideAdminLocation\ForumHooks;
+
+use function ougc\HideAdminLocation\Core\getSetting;
 
 function online_user(): bool
 {
@@ -69,7 +71,7 @@ function online_user(): bool
                     'intval',
                     explode(
                         ',',
-                        \OUGCHideAdminLoc\Core\getSetting('uids')
+                        getSetting('uids')
                     )
                 )
             ),
@@ -79,7 +81,7 @@ function online_user(): bool
                     'intval',
                     explode(
                         ',',
-                        \OUGCHideAdminLoc\Core\getSetting('gids')
+                        getSetting('gids')
                     )
                 )
             )
@@ -101,7 +103,7 @@ function online_user(): bool
     if (
         in_array($user['uid'], $hiddenUsers['users']) ||
         is_member($hiddenUsers['groups'], $userData) ||
-        (int)\OUGCHideAdminLoc\Core\getSetting('gids') === -1
+        (int)getSetting('gids') === -1
     ) {
         $user['ip'] = '';
         $user['location'] = '/index.php?';

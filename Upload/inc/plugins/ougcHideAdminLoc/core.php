@@ -26,7 +26,9 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  ****************************************************************************/
 
-namespace OUGCHideAdminLoc\Core;
+namespace ougc\HideAdminLocation\Core;
+
+use function ougc\HideAdminLocation\Admin\pluginInfo;
 
 function loadLanguage(): bool
 {
@@ -41,7 +43,7 @@ function loadLanguage(): bool
 
 function pluginLibraryRequirements(): object
 {
-    return (object)\OUGCHideAdminLoc\Admin\pluginInfo()['pl'];
+    return (object)pluginInfo()['pl'];
 }
 
 function loadPluginLibrary(bool $doCheck = true): bool
